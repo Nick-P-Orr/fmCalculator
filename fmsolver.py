@@ -8,9 +8,9 @@ b = [1,2,3]
 
 #Asks user for input, if interest/discount not entered, calculation will be based off other
 try:
-    interest = input('Enter interest in decimal format: ')
+    i = input('Enter interest in decimal format: ')
 except SyntaxError:
-    interest = None
+    i = None
 
 try:
     discount = input('Enter discount in decimal format: ')
@@ -18,7 +18,7 @@ except SyntaxError:
     discount = None
 
 #If neither are entered, it quits for now.
-if interest == None and discount == None:
+if i == None and discount == None:
     print 'exiting'
     exit(0)
 
@@ -29,30 +29,34 @@ except SyntaxError:
     n =  None
 
 
-if interest == None:
-    interest = (discount/(1-discount))
+if i == None:
+    i = (discount/(1-discount))
 
 if discount == None:
-    discount = (interest/(1+interest))
+    discount = (i/(1+i))
+
 
 #Current approach to formulas is shotgunning it and running and calculating each one.
 #May add functionality later to select which you need? Or maybe just print the ones selected?
 
-vNew = (1/(1+interest))
 
-presValue = vNew**n
+v = (1/(1+i))
 
-simpInterest = (1 + (interest*n))
+presValue = v**n
 
-compInterest = ((1+interest)**n)
+simpInterest = (1 + (i*n))
 
-annuityImmediate = ((1-(vNew**n))/interest)
+compInterest = ((1+i)**n)
 
-annuityDue = ((1-(vNew**n))/discount)
+annuityImmediate = ((1-(v**n))/i)
 
+annuityDue = ((1-(v**n))/discount)
 
+ssub = (((1+i)**n)*annuityImmediate)
 
+decreasingPaymentDA = ((n-annuityImmediate)/i)
 
+decreasingPaymentDS = (((1+i)**n) * decreasingPaymentDA)
 
 '''
 Too be implemented
